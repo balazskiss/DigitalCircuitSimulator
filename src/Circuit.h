@@ -8,6 +8,7 @@
 #ifndef CIRCUIT_H
 #define	CIRCUIT_H
 
+#include <iostream>
 #include "ComponentList.h"
 
 class Circuit {
@@ -19,5 +20,7 @@ public:
     
 
 };
+
+std::ostream &operator<<(std::ostream &os, Circuit *circuit);
 
 #endif	/* CIRCUIT_H */

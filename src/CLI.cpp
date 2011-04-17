@@ -57,6 +57,13 @@ int CLI::parseCommand(){
     if(strcmp(argv[0], "run") == 0)
         return run_circuit();
 
+    if(strcmp(argv[0], "add") == 0)
+        return add_component();
+    if(strcmp(argv[0], "mod") == 0)
+        return mod_component();
+    if(strcmp(argv[0], "del") == 0)
+        return del_component();
+
 
     return unknownCommand();
 }
@@ -138,7 +145,10 @@ int CLI::add_component(){
     }
 
     if(strcmp(argv[1], "NAND") == 0){
-        
+        Component *nand = new NAND();
+        circuit->components.add(nand);
+    }else{
+        cout << "Unknown component." << endl;
     }
 
     return 0;

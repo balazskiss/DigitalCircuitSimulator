@@ -6,4 +6,3 @@
  */
 
 #include "Component.h"
-

@@ -8,12 +8,11 @@
 #ifndef NAND_H
 #define	NAND_H
 
-class NAND : public Component{
+#include "Component.h"
+
+class NAND: public Component{
 public:
-    NAND();
-    NAND(const NAND& orig);
-    virtual ~NAND();
-private:
+    bool getValue();
 
 };
 

@@ -8,14 +8,22 @@
 #ifndef COMPONENT_H
 #define	COMPONENT_H
 
+#include <iostream>
 #include "ComponentList.h"
 
 class Component {
 public:
+    void connectToInput(Component *);
+    void connectToOutput(Component *);
+    virtual bool getValue() = 0;
+
+    friend std::ostream &operator<<(std::ostream &os, Component *c);
+
+private:
     ComponentList inputs;
     ComponentList outputs;
-
-    bool getValue();
 };
+
+
 
 #endif	/* COMPONENT_H */

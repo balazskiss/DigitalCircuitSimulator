@@ -7,4 +7,7 @@
 
 #include "Circuit.h"
 
-
+std::ostream &operator<<(std::ostream &os, Circuit *circuit){
+    for(int i=0; i<circuit->components.getSize(); i++)
+        std::cout << circuit->components[i];
+}

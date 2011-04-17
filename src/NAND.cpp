@@ -7,12 +7,10 @@
 
 #include "NAND.h"
 
-NAND::NAND() {
+bool NAND::getValue(){
+    return false;
 }
 
-NAND::NAND(const NAND& orig) {
+friend std::ostream &operator<<(std::ostream &os, Component *c){
+    std::cout << "NAND gate" << std::endl;
 }
-
-NAND::~NAND() {
-}
-
