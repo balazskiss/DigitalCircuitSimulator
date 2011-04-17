@@ -21,7 +21,7 @@ FC=
 AS=as
 
 # Macros
-CND_PLATFORM=GNU-Linux-x86
+CND_PLATFORM=GNU-MacOSX
 CND_CONF=Debug
 CND_DISTDIR=dist
 
@@ -58,10 +58,10 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-Debug.mk dist/Debug/GNU-Linux-x86/digitalcircuitsimulator
+	"${MAKE}"  -f nbproject/Makefile-Debug.mk dist/Debug/GNU-MacOSX/digitalcircuitsimulator
 
-dist/Debug/GNU-Linux-x86/digitalcircuitsimulator: ${OBJECTFILES}
-	${MKDIR} -p dist/Debug/GNU-Linux-x86
+dist/Debug/GNU-MacOSX/digitalcircuitsimulator: ${OBJECTFILES}
+	${MKDIR} -p dist/Debug/GNU-MacOSX
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/digitalcircuitsimulator ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/ComponentList.o: ComponentList.cpp 
@@ -95,7 +95,7 @@ ${OBJECTDIR}/Circuit.o: Circuit.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r build/Debug
-	${RM} dist/Debug/GNU-Linux-x86/digitalcircuitsimulator
+	${RM} dist/Debug/GNU-MacOSX/digitalcircuitsimulator
 
 # Subprojects
 .clean-subprojects:

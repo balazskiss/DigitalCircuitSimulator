@@ -77,3 +77,14 @@ int CLI::new_circuit(){
     cout << "New circuit has been created" << endl;
     return 0;
 }
+
+int CLI::close_circuit(){
+
+    if(circuit == 0){
+        cout << "No circuit is opened." << endl;
+        return 0;
+    }
+
+    circuit = 0;
+    return 0;
+}
