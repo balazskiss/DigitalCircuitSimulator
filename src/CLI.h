@@ -13,6 +13,7 @@
 #include <string.h>
 
 #include "Circuit.h"
+#include "NAND.h"
 
 class CLI {
 public:
