@@ -12,51 +12,68 @@ using namespace std;
 CLI::CLI() {
     cout << "DigitalWorks CLI Interface" << endl;
 
-    circuit = new Circuit;
-    cout << "New circuit has been created" << endl;
+    circuit = 0;
+    new_circuit();
 
-    readCommand();
-}
-
-CLI::CLI(const CLI& orig) {
+    //main loop
+    while( ! readCommand()) ;
 }
 
 CLI::~CLI() {
     delete circuit;
 }
 
-void CLI::readCommand(){
-    char cmd[100];
-    cout << "> ";
-    cin >> cmd;
+int CLI::readCommand(){
+    char cmd[1000];
 
-    if(strcmp(cmd, "help") == 0)
-        help(cmd);
-    else if(strcmp(cmd, "exit") == 0)
-        exit(cmd);
-    else
-        unknownCommand(cmd);
+    cout << ">" ;
+    argc = 0;
 
+    cin.getline(cmd, 1000);
+    stringstream ss(cmd);
+    while (ss.good())
+        ss >> argv[argc++];
+
+    return parseCommand();
+    
 }
 
-void CLI::help(const char *cmd){
+int CLI::parseCommand(){
+    if(strcmp(argv[0], "help") == 0)
+        return help();
+    if(strcmp(argv[0], "exit") == 0)
+        return exit();
+
+    return unknownCommand();
+}
+
+int CLI::help(){
     cout << "Commands:" << endl;
     cout << "help - prints this message" << endl;
     cout << "exit - Exits the program" << endl;
 
-    readCommand();
-}
-void CLI::save(const char *cmd){
-
-}
-void CLI::exit(const char *cmd){
-
-}
-void CLI::add(const char *cmd){
-
+    return 0;
 }
 
-void CLI::unknownCommand(const char *cmd){
-    cout << "Unknown command \"" << cmd << "\"" << endl;
-    help(cmd);
+int CLI::exit(){
+    return 1;
+}
+
+
+int CLI::unknownCommand(){
+    cout << "Unknown command \"" << argv[0] << "\"" << endl;
+    return help();
+}
+
+
+int CLI::new_circuit(){
+
+    if(circuit != 0){
+        cout << "Close your currently opened circuit first." << endl;
+        return 0;
+    }
+
+    circuit = new Circuit;
+    cout << "New circuit has been created" << endl;
+    return 0;
 }

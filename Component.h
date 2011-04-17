@@ -12,14 +12,10 @@
 
 class Component {
 public:
-    Component();
-    Component(const Component& orig);
-    virtual ~Component();
-    bool getValue();
-private:
     ComponentList inputs;
     ComponentList outputs;
 
+    bool getValue();
 };
 
 #endif	/* COMPONENT_H */

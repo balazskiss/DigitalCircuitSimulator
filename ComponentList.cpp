@@ -27,7 +27,7 @@ void ComponentList::add(Component *c){
     components = tmp;
 }
 
-void ComponentList::remove(const Component *c){
+void ComponentList::remove(Component *c){
     bool pull = false;
     for(int i=0; i<size; i++){
         if(components[i] == c)

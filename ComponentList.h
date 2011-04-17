@@ -13,16 +13,14 @@ class Component;
 class ComponentList {
 public:
     ComponentList();
-    virtual ~ComponentList();
+    ~ComponentList();
 
     void add(Component *);
-    void remove(const Component *);
+    void remove(Component *);
     int getSize() const;
 
 
 private:
-    ComponentList(const ComponentList& orig);
-
     Component **components;
     int size;
 };

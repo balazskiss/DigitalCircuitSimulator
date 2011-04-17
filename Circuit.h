@@ -12,15 +12,12 @@
 
 class Circuit {
 public:
-    Circuit();
-    Circuit(const Circuit& orig);
-    virtual ~Circuit();
-
-    bool wire(Component *, Component *);
-    void writeToFile(const char *);
-
-private:
     ComponentList components;
+    
+    bool wire(Component *, Component *);
+    void unwire(Component *, Component*);
+    
+
 };
 
 #endif	/* CIRCUIT_H */

@@ -9,6 +9,7 @@
 #define	CLI_H
 
 #include <iostream>
+#include <sstream>
 #include <string.h>
 
 #include "Circuit.h"
@@ -16,20 +17,31 @@
 class CLI {
 public:
     CLI();
-    CLI(const CLI& orig);
-    virtual ~CLI();
+    ~CLI();
     
 private:
+    int argc;
+    char argv[10][100];
     Circuit *circuit;
 
-    void readCommand();
-    void getParam(const char *, int, char *);
+    int readCommand();
+    int parseCommand();
 
-    void help(const char *);
-    void save(const char *);
-    void exit(const char *);
-    void add(const char *);
-    void unknownCommand(const char *);
+    int help();
+    int exit();
+    int unknownCommand();
+
+    int new_circuit();
+    int open_circuit();
+    int close_circuit();
+    int save_circuit();
+    int print_circuit();
+    int run_circuit();
+    
+    int add_component();
+    int mod_component();
+    int del_component();
+    
 
 };
 

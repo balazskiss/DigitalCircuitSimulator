@@ -8,12 +8,3 @@
 #include "Circuit.h"
 
 
-
-Circuit::Circuit() {
-}
-
-Circuit::Circuit(const Circuit& orig) {
-}
-
-Circuit::~Circuit() {
-}
