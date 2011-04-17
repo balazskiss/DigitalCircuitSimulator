@@ -19,6 +19,7 @@ public:
     void remove(Component *);
     int getSize() const;
 
+    Component* operator[](int) const;
 
 private:
     Component **components;

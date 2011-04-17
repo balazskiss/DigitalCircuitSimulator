@@ -15,6 +15,10 @@ ComponentList::~ComponentList() {
     delete[] components;
 }
 
+Component* ComponentList::operator[](int index) const{
+    return components[index];
+}
+
 void ComponentList::add(Component *c){
     Component **tmp = new Component *[size+1];
     for(int i=0; i<size; i++)

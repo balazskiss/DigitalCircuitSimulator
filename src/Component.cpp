@@ -6,3 +6,11 @@
  */
 
 #include "Component.h"
+
+void Component::connectToInput(Component *c){
+    inputs.add(c);
+}
+
+void Component::connectToOutput(Component *c){
+    outputs.add(c);
+}

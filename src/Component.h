@@ -17,9 +17,7 @@ public:
     void connectToOutput(Component *);
     virtual bool getValue() = 0;
 
-    friend std::ostream &operator<<(std::ostream &os, Component *c);
-
-private:
+protected:
     ComponentList inputs;
     ComponentList outputs;
 };

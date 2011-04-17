@@ -42,7 +42,8 @@ private:
     int add_component();
     int mod_component();
     int del_component();
-    
+
+    int wire();
 
 };
 
