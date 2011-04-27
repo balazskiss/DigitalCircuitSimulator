@@ -16,5 +16,8 @@ public:
 
 };
 
+
+std::ostream &operator<<(std::ostream &os, NAND *c);
+
 #endif	/* NAND_H */
 

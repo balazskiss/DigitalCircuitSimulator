@@ -9,6 +9,6 @@
 
 std::ostream &operator<<(std::ostream &os, Circuit *circuit){
     for(int i=0; i<circuit->components.getSize(); i++)
-        circuit->components[i];
+        os << (NAND*)circuit->components[i];
     return os;
 }

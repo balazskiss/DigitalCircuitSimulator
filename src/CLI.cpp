@@ -107,6 +107,7 @@ int CLI::close_circuit(){
         return 0;
     }
 
+    delete circuit;
     circuit = 0;
     return 0;
 }
@@ -126,6 +127,9 @@ int CLI::print_circuit(){
         cout << "No circuit is opened." << endl;
         return 0;
     }
+
+    cout << circuit;
+
     return 0;
 }
 int CLI::run_circuit(){

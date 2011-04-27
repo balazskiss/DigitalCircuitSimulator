@@ -11,6 +11,6 @@ bool NAND::getValue(){
     return false;
 }
 
-std::ostream &operator<<(std::ostream &os, Component *c){
+std::ostream &operator<<(std::ostream &os, NAND *c){
     std::cout << "NAND gate" << std::endl;
 }
