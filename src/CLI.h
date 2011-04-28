@@ -14,6 +14,7 @@
 
 #include "Circuit.h"
 #include "NAND.h"
+#include "OR.h"
 
 class CLI {
 public:

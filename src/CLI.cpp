@@ -10,7 +10,7 @@
 using namespace std;
 
 CLI::CLI() {
-    cout << "DigitalWorks CLI Interface" << endl;
+    cout << "DigitalCircuitSimulator CLI Interface" << endl;
 
     circuit = 0;
     new_circuit();
@@ -63,6 +63,9 @@ int CLI::parseCommand(){
         return mod_component();
     if(strcmp(argv[0], "del") == 0)
         return del_component();
+
+    if(strcmp(argv[0], "wire") == 0)
+        return wire();
 
 
     return unknownCommand();
@@ -151,6 +154,11 @@ int CLI::add_component(){
     if(strcmp(argv[1], "NAND") == 0){
         Component *nand = new NAND();
         circuit->components.add(nand);
+
+    }else if(strcmp(argv[1], "OR") == 0){
+        Component *or_gate = new OR();
+        circuit->components.add(or_gate);
+        
     }else{
         cout << "Unknown component." << endl;
     }
@@ -169,5 +177,30 @@ int CLI::del_component(){
         cout << "No circuit is opened." << endl;
         return 0;
     }
+    return 0;
+}
+
+int CLI::wire(){
+    if(circuit == 0){
+        cout << "No circuit is opened." << endl;
+        return 0;
+    }
+
+    if(argc != 3){
+        cout << "Bad number of parameters" << endl;
+        return 0;
+    }
+
+    int c1_i = atoi(argv[1]);
+    int c2_i = atoi(argv[2]);
+
+    if((c1_i * c2_i) == 0){
+        cout << "Please enter a valid component index" << endl;
+        return 0;
+    }
+
+    c1_i--; c2_i--;
+    circuit->wire(c1_i, c2_i);
+
     return 0;
 }

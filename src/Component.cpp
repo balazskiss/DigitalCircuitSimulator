@@ -14,3 +14,12 @@ void Component::connectToInput(Component *c){
 void Component::connectToOutput(Component *c){
     outputs.add(c);
 }
+
+void Component::printInput(){
+    std::cout << "Input: " <<  std::endl;
+    for(int i=0; i<inputs.getSize(); i++)
+        
+}
+void Component::printOutput(){
+    std::cout << "Output: " <<  std::endl;
+}

@@ -15,7 +15,7 @@ class Circuit {
 public:
     ComponentList components;
     
-    bool wire(Component *, Component *);
+    bool wire(unsigned, unsigned);
     void unwire(Component *, Component*);
     
 

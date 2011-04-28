@@ -13,11 +13,10 @@
 class NAND: public Component{
 public:
     bool getValue();
+    void print();
 
 };
 
-
-std::ostream &operator<<(std::ostream &os, NAND *c);
 
 #endif	/* NAND_H */
 

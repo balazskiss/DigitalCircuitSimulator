@@ -16,10 +16,14 @@ public:
     void connectToInput(Component *);
     void connectToOutput(Component *);
     virtual bool getValue() = 0;
+    virtual void print() = 0;
 
 protected:
     ComponentList inputs;
     ComponentList outputs;
+
+    void printInput();
+    void printOutput();
 };
 
 

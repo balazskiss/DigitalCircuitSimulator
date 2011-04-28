@@ -11,6 +11,8 @@ bool NAND::getValue(){
     return false;
 }
 
-std::ostream &operator<<(std::ostream &os, NAND *c){
+void NAND::print(){
     std::cout << "NAND gate" << std::endl;
+    printInput();
+    printOutput();
 }
