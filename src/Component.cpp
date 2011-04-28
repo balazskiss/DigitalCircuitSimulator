@@ -16,10 +16,14 @@ void Component::connectToOutput(Component *c){
 }
 
 void Component::printInput(){
-    std::cout << "Input: " <<  std::endl;
+    std::cout << "Input: ";
     for(int i=0; i<inputs.getSize(); i++)
-        
+        std::cout << inputs[i] << ' ';
+    std::cout << std::endl;
 }
 void Component::printOutput(){
-    std::cout << "Output: " <<  std::endl;
+    std::cout << "Output: ";
+    for(int i=0; i<outputs.getSize(); i++)
+        std::cout << outputs[i] << ' ';
+    std::cout << std::endl;
 }

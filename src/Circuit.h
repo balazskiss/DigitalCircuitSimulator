@@ -16,7 +16,7 @@ public:
     ComponentList components;
     
     bool wire(unsigned, unsigned);
-    void unwire(Component *, Component*);
+    void unwire(Component *, Component *);
     
 
 };
