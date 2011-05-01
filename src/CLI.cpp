@@ -6,6 +6,7 @@
  */
 
 #include "CLI.h"
+#include <fstream>
 
 using namespace std;
 
@@ -123,6 +124,12 @@ int CLI::save_circuit(){
         cout << "No circuit is opened." << endl;
         return 0;
     }
+
+    ofstream outfile;
+    outfile.open(argv[1]);
+    outfile << circuit;
+    outfile.close();
+
     return 0;
 }
 int CLI::print_circuit(){
@@ -140,6 +147,9 @@ int CLI::run_circuit(){
         cout << "No circuit is opened." << endl;
         return 0;
     }
+
+
+
     return 0;
 }
 

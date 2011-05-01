@@ -15,5 +15,5 @@ bool NAND::getValue(){
 }
 
 const char *NAND::getName(){
-    return "NAND gate";
+    return "NAND";
 }

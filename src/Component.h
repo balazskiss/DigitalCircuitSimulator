@@ -31,6 +31,8 @@ public:
 
     virtual const char *getName() = 0;
     unsigned getID() { return id; };
+    unsigned getNumberOfInputs(){ return inputs.getSize(); };
+    Component *getInputComponent(unsigned id) { return inputs[id]; };
 
 protected:
     ComponentList inputs;

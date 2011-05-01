@@ -16,5 +16,5 @@ bool OR::getValue(){
 }
 
 const char *OR::getName(){
-    return "OR gate";
+    return "OR";
 }

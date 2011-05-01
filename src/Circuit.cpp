@@ -5,19 +5,44 @@
  * Created on April 17, 2011, 2:52 PM
  */
 
+#include <string.h>
+#include <stdlib.h>
+
 #include "Circuit.h"
 #include "Component.h"
 #include "NAND.h"
 #include "OR.h"
+#include "LED.h"
+#include "Node.h"
+#include "Switch.h"
+#include "Positive.h"
+#include "Negative.h"
 
-/*std::ostream &operator<<(std::ostream &os, Circuit *circuit){
+std::ostream &operator<<(std::ostream &os, Circuit *circuit){
     for(int i=0; i<circuit->components.getSize(); i++){
-        os << std::endl;
-        os << "Component #" << i+1 << std::endl;
-        circuit->components[i]->print();
+        os << "add " << circuit->components[i]->getName() << std::endl;
     }
+
+    for(int i=0; i<circuit->components.getSize(); i++){
+        for(int j=0; j< (int) circuit->components[i]->getNumberOfInputs(); j++){
+            Component *input = circuit->components[i]->getInputComponent(j);
+
+            os << "wire ";
+            os << circuit->getIndexForComponent(input)+1;
+            os << " " << i+1 << std::endl;
+        }
+    }
+
     return os;
-}*/
+}
+
+unsigned Circuit::getIndexForComponent(Component *component){
+    for(int i=0; components.getSize(); i++){
+        if(components[i] == component)
+            return i;
+    }
+    return 0;
+}
 
 void Circuit::print(){
     for(int i=0; i<components.getSize(); i++){
@@ -39,6 +64,26 @@ void Circuit::add_component(const char* component){
     }else if(strcmp(component, "OR") == 0){
         Component *or_gate = new OR(getNextComponentID());
         components.add(or_gate);
+
+    }else if(strcmp(component, "LED") == 0){
+        Component *led = new LED(getNextComponentID());
+        components.add(led);
+
+    }else if(strcmp(component, "Node") == 0){
+        Component *node = new Node(getNextComponentID());
+        components.add(node);
+
+    }else if(strcmp(component, "Switch") == 0){
+        Component *switch_c = new Switch(getNextComponentID());
+        components.add(switch_c);
+
+    }else if(strcmp(component, "Positive") == 0){
+        Component *positive = new Positive(getNextComponentID());
+        components.add(positive);
+
+    }else if(strcmp(component, "Negative") == 0){
+        Component *negative = new Negative(getNextComponentID());
+        components.add(negative);
 
     }else{
         throw("Unknown component.");

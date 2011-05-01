@@ -15,6 +15,8 @@ class Circuit {
 private:
     ComponentList components;
     unsigned getNextComponentID();
+    unsigned getIndexForComponent(Component *);
+
 public:
     void add_component(const char*);
     
@@ -22,8 +24,8 @@ public:
     void unwire(Component *, Component *);
     
     void print();
-};
 
-//std::ostream &operator<<(std::ostream &os, Circuit *circuit);
+    friend std::ostream &operator<<(std::ostream &os, Circuit *circuit);
+};
 
 #endif	/* CIRCUIT_H */
