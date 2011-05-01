@@ -12,15 +12,18 @@
 #include "ComponentList.h"
 
 class Circuit {
-public:
+private:
     ComponentList components;
+    unsigned getNextComponentID();
+public:
+    void add_component(const char*);
     
     bool wire(unsigned, unsigned);
     void unwire(Component *, Component *);
     
-
+    void print();
 };
 
-std::ostream &operator<<(std::ostream &os, Circuit *circuit);
+//std::ostream &operator<<(std::ostream &os, Circuit *circuit);
 
 #endif	/* CIRCUIT_H */

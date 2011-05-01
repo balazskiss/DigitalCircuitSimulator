@@ -8,11 +8,13 @@
 #include "OR.h"
 
 bool OR::getValue(){
-    return false;
+    bool val = false;
+    for(int i=0; i<inputs.getSize(); i++){
+        val = inputs[i]->getValue() || val;
+    }
+    return val;
 }
 
-void OR::print(){
-    std::cout << "OR gate" << std::endl;
-    printInput();
-    printOutput();
+const char *OR::getName(){
+    return "OR gate";
 }

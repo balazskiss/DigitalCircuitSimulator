@@ -12,9 +12,9 @@
 
 class OR: public Component {
 public:
+    OR(unsigned id): Component(id, -1, 1) {};
     bool getValue();
-    void print();
-
+    const char *getName();
 };
 
 #endif	/* OR_H */

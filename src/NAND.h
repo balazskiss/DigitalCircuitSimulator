@@ -12,11 +12,10 @@
 
 class NAND: public Component{
 public:
+    NAND(unsigned id): Component(id, 2, 1) {};
     bool getValue();
-    void print();
-
+    const char *getName();
 };
 
 
 #endif	/* NAND_H */
-

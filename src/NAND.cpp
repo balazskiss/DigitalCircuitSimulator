@@ -8,11 +8,12 @@
 #include "NAND.h"
 
 bool NAND::getValue(){
-    return false;
+    if(inputs.getSize() < 2)
+        return true;
+    else
+        return ! (inputs[0]->getValue() && inputs[1]->getValue());
 }
 
-void NAND::print(){
-    std::cout << "NAND gate" << std::endl;
-    printInput();
-    printOutput();
+const char *NAND::getName(){
+    return "NAND gate";
 }

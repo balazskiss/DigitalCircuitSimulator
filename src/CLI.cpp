@@ -131,7 +131,7 @@ int CLI::print_circuit(){
         return 0;
     }
 
-    cout << circuit;
+    circuit->print();
 
     return 0;
 }
@@ -151,17 +151,7 @@ int CLI::add_component(){
         return 0;
     }
 
-    if(strcmp(argv[1], "NAND") == 0){
-        Component *nand = new NAND();
-        circuit->components.add(nand);
-
-    }else if(strcmp(argv[1], "OR") == 0){
-        Component *or_gate = new OR();
-        circuit->components.add(or_gate);
-        
-    }else{
-        cout << "Unknown component." << endl;
-    }
+    circuit->add_component(argv[1]);
 
     return 0;
 }
