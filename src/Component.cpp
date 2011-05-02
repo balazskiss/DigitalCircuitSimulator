@@ -21,6 +21,16 @@ void Component::connectToOutput(Component *c){
         throw("Couldn't connect to output.");
 }
 
+void Component::disconnectFromInput(Component *c){
+    //TODO: error handling
+    inputs.remove(c);
+}
+
+void Component::disconnectFromOutput(Component *c){
+    //TODO: error handling
+    outputs.remove(c);
+}
+
 void Component::printInput(){
     std::cout << "Input: ";
     for(int i=0; i<inputs.getSize(); i++)
@@ -39,4 +49,124 @@ void Component::print(){
     this->printInput();
     this->printOutput();
     std::cout << "Value: " << getValue() << std::endl;
+}
+
+
+
+//LED
+bool LED::getValue(){
+    if(inputs.getSize() == 0)
+        return false;
+
+    return inputs[0]->getValue();
+}
+
+const char *LED::getName(){
+    return "LED";
+}
+
+//AND
+bool AND::getValue(){
+    if(inputs.getSize() < 2)
+        return false;
+
+    bool val = true;
+    for(int i=0; i<inputs.getSize(); i++){
+        val = inputs[i]->getValue() && val;
+    }
+    return val;
+}
+
+const char *AND::getName(){
+    return "AND";
+}
+
+//NAND
+bool NAND::getValue(){
+    if(inputs.getSize() < 2)
+        return true;
+    else
+        return ! (inputs[0]->getValue() && inputs[1]->getValue());
+}
+
+const char *NAND::getName(){
+    return "NAND";
+}
+
+//OR
+bool OR::getValue(){
+    bool val = false;
+    for(int i=0; i<inputs.getSize(); i++){
+        val = inputs[i]->getValue() || val;
+    }
+    return val;
+}
+
+const char *OR::getName(){
+    return "OR";
+}
+
+//NOR
+bool NOR::getValue(){
+    bool val = false;
+    for(int i=0; i<inputs.getSize(); i++){
+        val = inputs[i]->getValue() || val;
+    }
+    return ! val;
+}
+
+const char *NOR::getName(){
+    return "NOR";
+}
+
+//Negative
+bool Negative::getValue(){
+    return false;
+}
+
+const char *Negative::getName(){
+    return "Negative";
+}
+
+//Positive
+bool Positive::getValue(){
+    return true;
+}
+
+const char *Positive::getName(){
+    return "Positive";
+}
+
+//Switch
+bool Switch::getValue(){
+    return value;
+}
+
+const char *Switch::getName(){
+    return "Switch";
+}
+
+//Node
+bool Node::getValue(){
+    if(inputs.getSize() == 0)
+        return false;
+
+    return inputs[0]->getValue();
+}
+
+const char *Node::getName(){
+    return "Node";
+}
+
+
+//Inverter
+bool Inverter::getValue(){
+    if(inputs.getSize() == 0)
+        return true;
+
+    return ! inputs[0]->getValue();
+}
+
+const char *Inverter::getName(){
+    return "Inverter";
 }

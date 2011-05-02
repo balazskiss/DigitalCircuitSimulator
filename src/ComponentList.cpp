@@ -16,6 +16,8 @@ ComponentList::~ComponentList() {
 }
 
 Component* ComponentList::operator[](int index) const{
+    if(index<0 || index>size-1)
+        throw("Undefined component index.");
     return components[index];
 }
 

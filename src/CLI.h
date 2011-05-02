@@ -14,8 +14,6 @@
 #include <stdlib.h>
 
 #include "Circuit.h"
-#include "NAND.h"
-#include "OR.h"
 
 class CLI {
 public:
@@ -27,8 +25,10 @@ private:
     char argv[10][100];
     Circuit *circuit;
 
-    int readCommand();
+    int readCommand(std::istream& stream, bool interactive);
     int parseCommand();
+    void requireCircuit();
+    void requireNumberOfParameters(int);
 
     int help();
     int exit();
@@ -46,6 +46,7 @@ private:
     int del_component();
 
     int wire();
+    int unwire();
 
 };
 

@@ -17,26 +17,39 @@ CLI::CLI() {
     new_circuit();
 
     //main loop
-    while( ! readCommand()) ;
+    while(true){
+        int r = 0;
+        
+        try{
+            readCommand(cin, true);
+            r = parseCommand();
+        }
+        catch(char *str){
+            std::cout << str << std::endl;
+        }
+
+        if(r) break;
+    }
 }
 
 CLI::~CLI() {
     delete circuit;
 }
 
-int CLI::readCommand(){
+int CLI::readCommand(std::istream& stream, bool interactive){
     char cmd[1000];
 
-    cout << ">" ;
+    if(interactive)
+        cout << "> " ;
+
     argc = 0;
 
-    cin.getline(cmd, 1000);
+    stream.getline(cmd, 1000);
     stringstream ss(cmd);
     while (ss.good())
         ss >> argv[argc++];
 
-    return parseCommand();
-    
+    return 0;
 }
 
 int CLI::parseCommand(){
@@ -67,27 +80,40 @@ int CLI::parseCommand(){
 
     if(strcmp(argv[0], "wire") == 0)
         return wire();
+    if(strcmp(argv[0], "unwire") == 0)
+        return unwire();
 
 
     return unknownCommand();
+}
+
+void CLI::requireCircuit(){
+    if(circuit == 0)
+        throw("No circuit is opened.");
+}
+void CLI::requireNumberOfParameters(int n){
+    if(argc != n)
+        throw("Bad number of parameters");
 }
 
 int CLI::help(){
     cout << "Commands:" << endl;
     cout << "help - prints this message" << endl;
     cout << "exit - Exits the program" << endl;
+    //TODO: list all command
 
     return 0;
 }
 
 int CLI::exit(){
+    cout << "Bye-bye" << endl;
     return 1;
 }
 
 
 int CLI::unknownCommand(){
-    cout << "Unknown command \"" << argv[0] << "\"." << endl;
-    return help();
+    throw("Unknown command. For available commands type help.");
+    return 0;
 }
 
 
@@ -95,35 +121,51 @@ int CLI::unknownCommand(){
 
 
 int CLI::new_circuit(){
-    if(circuit != 0){
-        cout << "Close your currently opened circuit first." << endl;
-        return 0;
-    }
+    if(circuit != 0)
+        throw("Close your currently opened circuit first.");
 
     circuit = new Circuit;
     cout << "New circuit has been created." << endl;
+
     return 0;
 }
 
 int CLI::close_circuit(){
-    if(circuit == 0){
-        cout << "No circuit is opened." << endl;
-        return 0;
-    }
+    requireCircuit();
 
     delete circuit;
     circuit = 0;
+    
     return 0;
 }
 
 int CLI::open_circuit(){
+    if(circuit != 0)
+        throw("Close your currently opened circuit first.");
+    requireNumberOfParameters(2);
+
+    circuit = new Circuit;
+
+    ifstream infile;
+    infile.open(argv[1]);
+    if (!infile)
+        throw("Unable to open file");
+    while(infile.good()){
+
+        try{
+            readCommand(infile, false);
+            parseCommand();
+        }
+        catch(char *){
+            ; //be quiet
+        }
+    }
+    infile.close();
+
     return 0;
 }
 int CLI::save_circuit(){
-    if(circuit == 0){
-        cout << "No circuit is opened." << endl;
-        return 0;
-    }
+    requireCircuit();
 
     ofstream outfile;
     outfile.open(argv[1]);
@@ -133,22 +175,16 @@ int CLI::save_circuit(){
     return 0;
 }
 int CLI::print_circuit(){
-    if(circuit == 0){
-        cout << "No circuit is opened." << endl;
-        return 0;
-    }
+    requireCircuit();
 
     circuit->print();
 
     return 0;
 }
 int CLI::run_circuit(){
-    if(circuit == 0){
-        cout << "No circuit is opened." << endl;
-        return 0;
-    }
+    requireCircuit();
 
-
+    circuit->run();
 
     return 0;
 }
@@ -156,40 +192,35 @@ int CLI::run_circuit(){
 
 
 int CLI::add_component(){
-    if(circuit == 0){
-        cout << "No circuit is opened." << endl;
-        return 0;
-    }
+    requireCircuit();
 
     circuit->add_component(argv[1]);
 
     return 0;
 }
 int CLI::mod_component(){
-    if(circuit == 0){
-        cout << "No circuit is opened." << endl;
-        return 0;
-    }
+    requireCircuit();
+    requireNumberOfParameters(3);
+
+    int c_id = atoi(argv[1]);
+
+    circuit->mod_component(c_id-1, argv[2]);
+
     return 0;
 }
 int CLI::del_component(){
-    if(circuit == 0){
-        cout << "No circuit is opened." << endl;
-        return 0;
-    }
+    requireCircuit();
+
+    int c_id = atoi(argv[1]);
+
+    circuit->del_component(c_id-1);
+
     return 0;
 }
 
 int CLI::wire(){
-    if(circuit == 0){
-        cout << "No circuit is opened." << endl;
-        return 0;
-    }
-
-    if(argc != 3){
-        cout << "Bad number of parameters" << endl;
-        return 0;
-    }
+    requireCircuit();
+    requireNumberOfParameters(3);
 
     int c1_i = atoi(argv[1]);
     int c2_i = atoi(argv[2]);
@@ -201,6 +232,24 @@ int CLI::wire(){
 
     c1_i--; c2_i--;
     circuit->wire(c1_i, c2_i);
+
+    return 0;
+}
+
+int CLI::unwire(){
+    requireCircuit();
+    requireNumberOfParameters(3);
+
+    int c1_i = atoi(argv[1]);
+    int c2_i = atoi(argv[2]);
+
+    if((c1_i * c2_i) == 0){
+        cout << "Please enter a valid component index" << endl;
+        return 0;
+    }
+
+    c1_i--; c2_i--;
+    circuit->unwire(c1_i, c2_i);
 
     return 0;
 }

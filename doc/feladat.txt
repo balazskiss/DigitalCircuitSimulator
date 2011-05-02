@@ -1,0 +1,80 @@
+Nagy házi feladat
+Kiss Balázs (RWZYYD) részére:
+
+   Készítsen egyszerű objektummodellt digitális áramkör
+   szimulálására! A modell minimálisan tartalmazza a következő 
+   elemeket:
+	- NOR kapu
+	- vezérelhető forrás
+	- összekötő vezeték
+   	- csomópont
+   A modell felhasználásával szimulálja egy olyan 5 bemenetű 
+   kombinációs hálózat működését, amely akkor ad a kimenetén 
+   hamis értéket, ha bementén előálló kombináció 5!
+
+Demonstrálja a működést külön modulként fordított tesztprogrammal!
+A megoldáshoz NE használjon STL tárolót vagy algoritmust!
+
+
+A tesztprogramot úgy specifikálja, hogy az parancssoros batch alkalmazásként (is)
+működjön, azaz a szabványos bemenetről olvasson, és a szabványos kimenetre, 
+és/vagy a hibakimenetre írjon!
+Amennyiben a feladat teszteléséhez fájlból, vagy fájlokból kell input adatot 
+olvasnia, úgy a fájl neve *.dat alakú legyen!
+
+A nagyfeladat eredményes teljesítéséhez határidőig elektronikusan fel 
+kell tölteni a Cporta feladatbeadó rendszerre a 
+ - Feladat dokumentációját, ami egyetlen PDF fájlba szerkesztve 
+   a következőket tartalmazza:  
+    * a feladat szövegét (ezt a szöveget),
+    * az Ön által kibővített specifikációt,
+    * a megoldási vázlatot, 
+    * osztálydiagramot, valamint az osztályok és tagfüggvények leírását 
+      (bármilyen leíró módszer használható),
+    * programozási leírást az elkészített objektum(ok) felhasználásához,
+    * tesztelési dokumentációt
+ - A program forráskódját és bemeneti adatait ami több (max 10 db) .cpp,
+   .h, vagy .dat állományt is tartalmazhat.
+ - Tesztesetekhez tartozó, a tesztelés során a program szabványos 
+   bemenetén megjelenő adatokat (min. 1, max. 5 teszteset). Tesztadatokat
+   úgy válassza meg, hogy lehetőleg a program minden függvénye legalább
+   egyszer hívódjon meg, illetőleg a program minden fontosabb ága fusson!
+
+A feltöltött programot a feladatbeadó rendszer lefordítja és összeszerkeszti. 
+A fordítás és szerkesztés eredményeként hiba- és figyelmeztető üzenet nem 
+keletkezhet! Sikeres fordítás után a rendszer lefuttatja a programot az 
+Ön által megadott tesztadatokkal.
+Sikeres elektronikus beadás után a dokumentációt és a működő programot a 
+laborvezetőnek személyesen is be kell mutatni a tárgykövetelményben
+megadott határidőig.
+
+A dokumentáció elkészítéséhez célszerű valamilyen öndokumentáló rendszert 
+választani (pl. doxygen). Az így előállított nyers dokumentáció részbeni 
+felhasználásával tömör, igényes leírás állítható elő.
+
+A folyamatos előrehaladás ellenőrzése érdekében a következő közbülső
+határidőkhöz kell igazodni:
+ - Pontosított feladatspecifikáció bemutatása, legkésőbb a 8. oktatási hét 
+   laborgyakorlatán (feladat értelmezéséhez sokszor segít a Wikipédia). 
+ - Osztálydiagram és/vagy algoritmus bemutatása legkésőbb a
+   9. oktatási hét laborgyakorlatán.
+ - Véglegesített osztálydiagram ill. algoritmus, valamint interfész
+   specifikáció bemutatása legkésőbb a 10. oktatási hét
+   laborgyakorlatán. Az interfész specifikáció ellenőrzéséhez a
+   laborgyakorlatot megelőző vasárnap 23:59-ig fel kell töltenie a Cporta
+   rendszerbe az Ön által specifikált fejlécállományokat és egy olyan
+   nem feltétlenül végleges tesztprogramot (a hozzá tartozó tesztadatokkal), 
+   ami a megadott interfészt használja.  A feltöltött forráskódnak 
+   szintaktikailag helyesnek kell lennie, de nem kell működnie. 
+   A Cporta rendszer csak a fordítást ellenőrzi, a szerkesztés eredményét nem, így 
+   a (tag)függvények törzse teljesen hiányozhat!
+   E határidőt akkor tudja megfelelően teljesíteni, ha az osztályokat
+   már olyan részletesen megtervezte, hogy a deklarációk a tervei
+   alapján könnyen leírhatóak.
+
+Fri Apr  1 17:01:13 2011
+
+Eredményes feladatmegoldást!
+HF Generátor BME-IIT
+
+

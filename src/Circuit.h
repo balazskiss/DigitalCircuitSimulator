@@ -14,16 +14,18 @@
 class Circuit {
 private:
     ComponentList components;
-    unsigned getNextComponentID();
-    unsigned getIndexForComponent(Component *);
 
 public:
+    unsigned getComponentID(Component *);
     void add_component(const char*);
+    void del_component(unsigned);
+    void mod_component(unsigned, char *);
     
     bool wire(unsigned, unsigned);
-    void unwire(Component *, Component *);
+    void unwire(unsigned, unsigned);
     
     void print();
+    void run();
 
     friend std::ostream &operator<<(std::ostream &os, Circuit *circuit);
 };
