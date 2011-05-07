@@ -11,6 +11,11 @@
 #include "Circuit.h"
 #include "Component.h"
 
+Circuit::~Circuit(){
+    for(int i=0;i<components.getSize();i++)
+        delete components[i];
+}
+
 std::ostream &operator<<(std::ostream &os, Circuit *circuit){
     for(int i=0; i<circuit->components.getSize(); i++){
         os << "add " << circuit->components[i]->getName() << std::endl;

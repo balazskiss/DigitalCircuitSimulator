@@ -6,6 +6,7 @@
  */
 
 #include "ComponentList.h"
+#include "Component.h"
 
 ComponentList::ComponentList() : size(0) {
     components = 0;
@@ -26,8 +27,7 @@ void ComponentList::add(Component *c){
     for(int i=0; i<size; i++)
         tmp[i]=components[i];
 
-    tmp[size]=c;
-    size++;
+    tmp[size++]=c;
 
     delete[] components;
     components = tmp;

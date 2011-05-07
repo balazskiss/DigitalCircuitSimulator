@@ -16,6 +16,8 @@ private:
     ComponentList components;
 
 public:
+    ~Circuit();
+
     unsigned getComponentID(Component *);
     void add_component(const char*);
     void del_component(unsigned);

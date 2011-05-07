@@ -7,6 +7,7 @@
 
 #include "Component.h"
 
+
 void Component::connectToInput(Component *c){
     if((inputs.getSize() < max_inputs) || (max_inputs == -1))
         inputs.add(c);

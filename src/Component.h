@@ -24,6 +24,7 @@ public:
         this->max_inputs = max_inputs;
         this->max_outputs = max_outputs;
     };
+    virtual ~Component() { std::cout << "destruktor!!!" <<std::endl ;} ;
 
     void connectToInput(Component *);
     void connectToOutput(Component *);
