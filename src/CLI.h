@@ -25,6 +25,8 @@ private:
     char argv[10][100];
     Circuit *circuit;
 
+    CLI(CLI &);
+
     int readCommand(std::istream& stream, bool interactive);
     int parseCommand();
     void requireCircuit();
