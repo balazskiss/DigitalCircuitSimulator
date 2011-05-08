@@ -31,6 +31,8 @@ std::ostream &operator<<(std::ostream &os, Circuit *circuit){
         }
     }
 
+    // TODO: Export switch states
+
     return os;
 }
 
@@ -42,15 +44,16 @@ unsigned Circuit::getComponentID(Component *component){
     return 0;
 }
 
-void Circuit::print(){
+void Circuit::print(std::ostream &os){
     for(int i=0; i<components.getSize(); i++){
-        std::cout << std::endl;
-        std::cout << "Component #" << i+1 << std::endl;
+        os << std::endl;
+        os << "Component #" << i+1 << std::endl;
         components[i]->print();
     }
 }
 
 void Circuit::run(){
+    // TODO: this should be in the CLI class
     for(int i=0; i<components.getSize(); i++){
         Component *c = components[i];
         if(strcmp(c->getName(), "LED") == 0 ){
@@ -112,7 +115,9 @@ void Circuit::add_component(const char* component){
 void Circuit::del_component(unsigned c_id){
     Component *c = components[c_id];
 
+    //TODO: disconnect from other components
     components.remove(c);
+
 }
 
 void Circuit::mod_component(unsigned c_id, char *setting){
@@ -131,14 +136,12 @@ void Circuit::mod_component(unsigned c_id, char *setting){
     }
 }
 
-bool Circuit::wire(unsigned c1_id, unsigned c2_id){
+void Circuit::wire(unsigned c1_id, unsigned c2_id){
     Component *c1 = components[c1_id];
     Component *c2 = components[c2_id];
 
     c1->connectToOutput(c2);
     c2->connectToInput(c1);
-
-    return true;
 }
 void Circuit::unwire(unsigned c1_id, unsigned c2_id){
     Component *c1 = components[c1_id];

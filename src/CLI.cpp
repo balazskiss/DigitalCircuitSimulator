@@ -18,17 +18,17 @@ CLI::CLI() {
 
     //main loop
     while(true){
-        int r = 0;
+        int return_value = 0;
         
         try{
             readCommand(cin, true);
-            r = parseCommand();
+            return_value = parseCommand();
         }
-        catch(char *str){
+        catch(const char *str){
             std::cout << str << std::endl;
         }
 
-        if(r) break;
+        if(return_value) break;
     }
 }
 
@@ -98,9 +98,20 @@ void CLI::requireNumberOfParameters(int n){
 
 int CLI::help(){
     cout << "Commands:" << endl;
-    cout << "help - prints this message" << endl;
+    cout << "help - Prints this message" << endl;
     cout << "exit - Exits the program" << endl;
-    //TODO: list all command
+    cout << "new - Starts an empty circuit" << endl;
+    cout << "close - Closes the currently opened circuit" << endl;
+    cout << "open [example.dc] - Opens a circuit from file" << endl;
+    cout << "save [example.dc] - Saves the circuit to file" << endl;
+    cout << "print - Prints the components' details" << endl;
+    cout << "run - Runs the circuit (simulate)" << endl;
+    cout << "add [component_type] - Adds a component to the circuit" << endl;
+    cout << "    Possible components types are: AND, NAND, OR, NOR, LED, Node, Inverter, Switch, Positive, Negative" << endl;
+    cout << "mod [component_index] [settings] - Modifies a component's settings" << endl;
+    cout << "del [component_index] - Removes a component from the circuit" << endl;
+    cout << "wire [component_index] [component_index] - Wires two components" << endl;
+    cout << "unwire [component_index] [component_index] - Unwires two components" << endl;
 
     return 0;
 }
@@ -177,7 +188,7 @@ int CLI::save_circuit(){
 int CLI::print_circuit(){
     requireCircuit();
 
-    circuit->print();
+    circuit->print(cout);
 
     return 0;
 }
@@ -225,10 +236,8 @@ int CLI::wire(){
     int c1_i = atoi(argv[1]);
     int c2_i = atoi(argv[2]);
 
-    if((c1_i * c2_i) == 0){
-        cout << "Please enter a valid component index" << endl;
-        return 0;
-    }
+    if((c1_i * c2_i) == 0)
+        throw("Please enter a valid component index");
 
     c1_i--; c2_i--;
     circuit->wire(c1_i, c2_i);
@@ -243,10 +252,8 @@ int CLI::unwire(){
     int c1_i = atoi(argv[1]);
     int c2_i = atoi(argv[2]);
 
-    if((c1_i * c2_i) == 0){
-        cout << "Please enter a valid component index" << endl;
-        return 0;
-    }
+    if((c1_i * c2_i) == 0)
+        throw("Please enter a valid component index");
 
     c1_i--; c2_i--;
     circuit->unwire(c1_i, c2_i);

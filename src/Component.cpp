@@ -7,6 +7,12 @@
 
 #include "Component.h"
 
+Component::Component(Circuit *circuit, int max_inputs, int max_outputs) {
+        this->circuit = circuit;
+        this->max_inputs = max_inputs;
+        this->max_outputs = max_outputs;
+        locked = false;
+    };
 
 void Component::connectToInput(Component *c){
     if((inputs.getSize() < max_inputs) || (max_inputs == -1))
@@ -50,6 +56,15 @@ void Component::print(){
     this->printInput();
     this->printOutput();
     std::cout << "Value: " << getValue() << std::endl;
+}
+
+void Component::lock(){
+    if(locked)
+        throw("Component locked!");
+    locked = true;
+}
+void Component::unlock(){
+    locked = false;
 }
 
 
@@ -96,10 +111,12 @@ const char *NAND::getName(){
 
 //OR
 bool OR::getValue(){
+    lock();
     bool val = false;
     for(int i=0; i<inputs.getSize(); i++){
         val = inputs[i]->getValue() || val;
     }
+    unlock();
     return val;
 }
 

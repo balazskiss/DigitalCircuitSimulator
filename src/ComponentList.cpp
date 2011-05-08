@@ -34,15 +34,18 @@ void ComponentList::add(Component *c){
 }
 
 void ComponentList::remove(Component *c){
-    bool pull = false;
+    bool found = false;
     for(int i=0; i<size; i++){
         if(components[i] == c)
-            pull = true;
-        if(pull && i!=size-1)
+            found = true;
+        if(found && i!=size-1)
             components[i]=components[i+1];
     }
 
-    size--;
+    if(found)
+        size--;
+    else
+        throw("The given Component pointer is not in the list!");
 }
 
 int ComponentList::getSize() const{
