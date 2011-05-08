@@ -12,7 +12,7 @@ Component::Component(Circuit *circuit, int max_inputs, int max_outputs) {
         this->max_inputs = max_inputs;
         this->max_outputs = max_outputs;
         locked = false;
-    };
+}
 
 void Component::connectToInput(Component *c){
     if((inputs.getSize() < max_inputs) || (max_inputs == -1))

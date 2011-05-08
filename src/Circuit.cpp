@@ -116,6 +116,7 @@ void Circuit::del_component(unsigned c_id){
     Component *c = components[c_id];
 
     //TODO: disconnect from other components
+    delete c;
     components.remove(c);
 
 }
