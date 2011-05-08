@@ -45,13 +45,9 @@ private:
      */
     Circuit *circuit;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+    
     CLI(CLI &);
 
-=======
-=======
->>>>>>> master
     /**
      * Reads a command from input stream
      *
@@ -59,10 +55,6 @@ private:
      * @param interactive whether to display the '> ' prompt
      * @return
      */
-<<<<<<< HEAD
->>>>>>> Documentation
-=======
->>>>>>> master
     int readCommand(std::istream& stream, bool interactive);
     /**
      * Parses the entered command
